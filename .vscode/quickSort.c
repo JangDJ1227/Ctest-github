@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+static int number=1;
 // 배열의 두 요소를 교환하는 함수
 void swap(int* a, int* b) {
     int temp = *a;
@@ -17,10 +17,22 @@ int partition(int arr[], int low, int high) {
         if (arr[j] < pivot) {
             i++; // 작은 그룹의 끝을 증가시킵니다.
             swap(&arr[i], &arr[j]);
+            printf("%d: ",number);
+            number++;
+            for(int k=0;k<6;k++){
+                printf("%d ",arr[k]);
+            }
+            printf("\n");
         }
     }
     // 피벗을 올바른 위치로 이동시킵니다.
     swap(&arr[i + 1], &arr[high]);
+    printf("%d: ",number);
+    number++;
+    for(int k=0;k<6;k++){
+            printf("%d ",arr[k]);
+        }
+        printf("\n");
     return (i + 1);
 }
 
@@ -35,22 +47,18 @@ void quickSort(int arr[], int low, int high) {
         quickSort(arr, pi + 1, high); // 큰 그룹 정렬
     }
 }
-
-// 배열을 출력하는 함수
-void printArray(int arr[], int size) {
-    for (int i = 0; i < size; i++)
-        printf("%d ", arr[i]);
-    printf("\n");
-}
-
 // 메인 함수
 int main() {
     int arr[] = {10, 7, 8, 9, 1, 5};
     int n = sizeof(arr) / sizeof(arr[0]);
     printf("정렬 전 배열: \n");
-    printArray(arr, n);
+    for(int i=0;i<n;i++){
+        printf("%d ",arr[i]);
+    }
     quickSort(arr, 0, n - 1);
-    printf("정렬 후 배열: \n");
-    printArray(arr, n);
+    printf("\n정렬 후 배열: \n");
+     for(int i=0;i<n;i++){
+        printf("%d ",arr[i]);
+    }
     return 0;
 }
